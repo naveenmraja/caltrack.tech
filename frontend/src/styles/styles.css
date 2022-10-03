@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    height: 100vh;
+    width: 100vw;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+#root {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -ms-overflow-y: scroll;
+    -ms-overflow-x: hidden;
+}
+
+#root, .homeContainer, .baseContainer {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -ms-overflow-y: scroll;
+    -ms-overflow-x: hidden;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.noPaddingLeftGridItem {
+    padding-left: 0 !important;
+}
+
+.noPaddingTopGridItem {
+    padding-top: 0 !important;
+}
+
+.noPaddingGridItem {
+    padding-left: 0 !important;
+    padding-top: 0 !important;
+}
+
+.noPaddingLeft {
+    padding-left: 0 !important;
+}
+
+.noPaddingTop {
+    padding-top: 0 !important;
+}
+
+.moonlitGradient {
+    margin: 0 auto !important;
+    background: #0F2027 !important;
+    background: -webkit-linear-gradient(to top, #2C5364, #203A43, #0F2027) !important;
+    background: linear-gradient(to top, #2C5364, #203A43, #0F2027) !important;
+}
+
+.twitchGradient {
+    background: #6441A5 !important;
+    background: -webkit-linear-gradient(to right, #2a0845, #6441A5) !important;
+    background: linear-gradient(to right, #2a0845, #6441A5) !important;
+}
+
+.frostGradient {
+    background: #000428 !important;
+    background: -webkit-linear-gradient(to left, #004e92, #000428) !important;
+    background: linear-gradient(to left, #004e92, #000428) !important;
+}
+
+.deepspaceGradient {
+    background: #000000 !important;
+    background: -webkit-linear-gradient(to left, #434343, #000000) !important;
+    background: linear-gradient(to left, #434343, #000000) !important;
+}
+
+.underTheLakeGradient {
+    background: #093028 !important;
+    background: -webkit-linear-gradient(to left, #237A57, #093028) !important;
+    background: linear-gradient(to left, #237A57, #093028) !important;
+}
+
+.purpleBlissGradient {
+    background: #360033 !important;
+    background: -webkit-linear-gradient(to left, #0b8793, #360033) !important;
+    background: linear-gradient(to left, #0b8793, #360033) !important;
+}
+
+.netflixGradient {
+    background: #8E0E00 !important;
+    background: -webkit-linear-gradient(to right, #1F1C18, #8E0E00) !important;
+    background: linear-gradient(to right, #1F1C18, #8E0E00) !important;
+}
+
+.visionsOfGrandeurGradient {
+    background: #000046 !important;
+    background: -webkit-linear-gradient(to left, #1CB5E0, #000046) !important;
+    background: linear-gradient(to left, #1CB5E0, #000046) !important;
+}

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: caltrack-nginx-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: caltrack-nginx
+  template:
+    metadata:
+      labels:
+        component: caltrack-nginx
+    spec:
+      containers:
+        - name: caltrack-nginx
+          image: naveenmraja/caltrack-nginx:1.0.1
+          ports:
+            - containerPort: 80

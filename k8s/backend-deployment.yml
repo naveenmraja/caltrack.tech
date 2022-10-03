@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: caltrack-backend-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: caltrack-backend
+  template:
+    metadata:
+      labels:
+        component: caltrack-backend
+    spec:
+      containers:
+        - name: caltrack-backend
+          image: naveenmraja/caltrack-backend:1.0.1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: MONGODB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: caltrack-backend-env-secrets
+                  key: MONGODB_URL
+            - name: JWT_ACCESS_TOKEN_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: caltrack-backend-env-secrets
+                  key: JWT_ACCESS_TOKEN_SECRET_KEY
+            - name: JWT_REFRESH_TOKEN_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: caltrack-backend-env-secrets
+                  key: JWT_REFRESH_TOKEN_SECRET_KEY
+            - name: ADMIN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: caltrack-backend-env-secrets
+                  key: ADMIN_USERNAME
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: caltrack-backend-env-secrets
+                  key: ADMIN_PASSWORD
+            - name: ADMIN_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: caltrack-backend-env-secrets
+                  key: ADMIN_EMAIL
+            - name: NODEMAILER_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: caltrack-backend-env-secrets
+                  key: NODEMAILER_EMAIL
+            - name: NODEMAILER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: caltrack-backend-env-secrets
+                  key: NODEMAILER_PASSWORD

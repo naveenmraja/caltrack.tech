@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+  mongo-dev-server:
+    image: "mongo:latest"
+    container_name: mongo-dev-server
+    restart: always
+    volumes:
+      - "./docker/mongo/data:/data/db"
+    env_file:
+      - ./.env.mongo.dev
+  caltrack-dev-backend:
+    build:
+      context: ./backend
+      dockerfile: DockerFile.dev
+    container_name: caltrack-dev-backend
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./.env.backend.dev
+    depends_on:
+      - "mongo-dev-server"
+    links:
+      - "mongo-dev-server"
+    volumes:
+      - "/usr/caltrack/backend/node_modules"
+      - "./backend:/usr/caltrack/backend"
+  caltrack-dev-frontend:
+    build:
+      context: ./frontend
+      dockerfile: DockerFile.dev
+    container_name: caltrack-dev-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - "/usr/caltrack/frontend/node_modules"
+      - "./frontend:/usr/caltrack/frontend"
+    environment:
+      - WDS_SOCKET_PORT=0
+    depends_on:
+      - caltrack-dev-backend
+    links:
+      - caltrack-dev-backend
+  caltrack-dev-nginx:
+    build:
+      context: ./nginx
+      dockerfile: DockerFile.dev
+    container_name: caltrack-dev-nginx
+    ports:
+      - "8088:80"
+    depends_on:
+      - caltrack-dev-backend
+      - caltrack-dev-frontend
+    links:
+      - caltrack-dev-backend
+      - caltrack-dev-frontend

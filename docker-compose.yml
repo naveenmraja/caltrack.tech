@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  caltrack-backend:
+    build:
+      context: ./backend
+      dockerfile: DockerFile
+    image: naveenmraja/caltrack-backend:1.0.1
+    container_name: caltrack-backend
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./.env.backend
+    volumes:
+      - "/usr/caltrack/backend/node_modules"
+      - "./backend:/usr/caltrack/backend"
+  caltrack-nginx:
+    build:
+      context: .
+      dockerfile: ./nginx/DockerFile
+    image: naveenmraja/caltrack-nginx:1.0.1
+    container_name: caltrack-nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - caltrack-backend
+    links:
+      - caltrack-backend

@@ -1,0 +1,50 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: caltrack-ingress-service
+  annotations:
+    kubernetes.io/ingress.class: 'nginx'
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    cert-manager.io/cluster-issuer: 'letsencrypt-prod'
+spec:
+  tls:
+    - hosts:
+        - caltrack.tech
+        - www.caltrack.tech
+      secretName: caltrack-tech
+  rules:
+    - host: caltrack.tech
+      http:
+        paths:
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: caltrack-nginx-cluster-ip-service
+                port:
+                  number: 80
+          - path: /api/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: caltrack-backend-cluster-ip-service
+                port:
+                  number: 8080
+    - host: www.caltrack.tech
+      http:
+        paths:
+            - path: /?(.*)
+              pathType: Prefix
+              backend:
+                service:
+                  name: caltrack-nginx-cluster-ip-service
+                  port:
+                    number: 80
+            - path: /api/?(.*)
+              pathType: Prefix
+              backend:
+                service:
+                  name: caltrack-backend-cluster-ip-service
+                  port:
+                    number: 8080
